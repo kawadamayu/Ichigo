@@ -1,0 +1,34 @@
+<h1>(tweets)</h1>
+<h3>新規投稿ページ</h3>
+<%= form_for @tweet do |t| %>
+
+
+  <div class="field">
+    <%= t.label :品種 %>
+    <%= t.text_field :place, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= t.label :産地 %>
+    <%= t.text_field :place, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= t.label :見た目 %>
+    <%= t.text_field :image, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%=t.label :糖度  %>
+    <%= t.number_field :sweet, :size => 10 %>
+  </div>
+
+  <div class="field">
+    <%= t.label :価格  %>
+    <%= t.number_field :price, :size => 10 %>
+  </div>
+
+ <%= t.submit "投稿する" %>
+<% end %>
+
+<%= link_to "一覧に戻る", tweets_path %>

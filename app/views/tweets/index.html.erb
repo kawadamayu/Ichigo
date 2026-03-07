@@ -1,0 +1,27 @@
+<h1>tweets</h1>
+<h3>新規投稿機能ページ</h3>
+
+<!--ここから-->
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+<!--ここまで-->
+
+<%= link_to "新規投稿へ", new_tweet_path %>
+<div class="tweets-container">
+  <% @tweets.each do |t| %>
+    <div class="tweet">
+      <%= t.title %>
+      <%= t.sweet%>
+      <%= t.place %>
+      <%= t.price%>
+      <%= t.image%>
+     <%= link_to "詳細へ", tweet_path(t.id) %> 
+     <%= link_to "編集する", edit_tweet_path(t.id) %>
+      <%= button_to "削除する", tweet_path(t.id), method: :delete %> 
+    </div>   
+  <% end %>
+</div>
+ <%= link_to "診断を始める", new_perfume_path, class: "link" %>
