@@ -5,16 +5,16 @@
 
 <%
 answers = [
-@ichigo.question1,
-@ichigo.question2,
-@ichigo.question3,
-@ichigo.question4,
-@ichigo.question5,
-@ichigo.question6,
-@ichigo.question7,
-@ichigo.question8,
-@ichigo.question9,
-@ichigo.question10
+@perfume.question1,
+@perfume.question2,
+@perfume.question3,
+@perfume.question4,
+@perfume.question5,
+@perfume.question6,
+@perfume.question7,
+@perfume.question8,
+@perfume.question9,
+@perfume.question10
 ]
 
 a_count = answers.count("A")
@@ -25,12 +25,12 @@ c_count = answers.count("C")
 aroma_score = 0
 sweets_score = 0
 
-aroma_score += 1 if @ichigo.question3 == "A"
-aroma_score += 1 if @ichigo.question6 == "B"
-aroma_score += 1 if @ichigo.question10 == "C"
+aroma_score += 1 if @perfume.question3 == "A"
+aroma_score += 1 if @perfume.question6 == "B"
+aroma_score += 1 if @perfume.question10 == "C"
 
-sweets_score += 1 if @ichigo.question5 == "B"
-sweets_score += 1 if @ichigo.question9 == "A"
+sweets_score += 1 if @perfume.question5 == "B"
+sweets_score += 1 if @perfume.question9 == "A"
 %>
 
 <div class="result">
