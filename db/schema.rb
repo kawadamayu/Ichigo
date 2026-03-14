@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_07_113615) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_14_080146) do
   create_table "perfumes", force: :cascade do |t|
     t.string "question1"
     t.string "question2"
@@ -18,6 +18,12 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_07_113615) do
     t.string "question4"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "question5"
+    t.string "question6"
+    t.string "question7"
+    t.string "question8"
+    t.string "question9"
+    t.string "question10"
   end
 
   create_table "tweets", force: :cascade do |t|
