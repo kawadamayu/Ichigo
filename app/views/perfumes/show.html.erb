@@ -44,7 +44,7 @@ scores = {
   "A5" => a5
 }
 
-result = scores.max_by{|k,v| v}[0]
+result = scores.max_by { |_, v| v }&.first
 %>
 
 <div class="result">
@@ -78,4 +78,4 @@ result = scores.max_by{|k,v| v}[0]
 
 </div>
 
-<%= link_to "一覧に戻る", perfumes_path %>
+<%= link_to "一覧に戻る", tweets_path %>
