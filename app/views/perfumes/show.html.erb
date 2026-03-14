@@ -1,102 +1,81 @@
 <div class="intoro">
-  <h2>診断結果</h2>
-  <p>あなたにおすすめのいちごタイプは…</p>
+ <h2>診断結果</h2>
+ <p>あなたにおすすめのいちごタイプは…</p>
 </div>
 
 <%
-answers = [
-@perfume.question1,
-@perfume.question2,
-@perfume.question3,
-@perfume.question4,
-@perfume.question5,
-@perfume.question6,
-@perfume.question7,
-@perfume.question8,
-@perfume.question9,
-@perfume.question10
-]
+# スコア
+a1 = 0
+a2 = 0
+a3 = 0
+a4 = 0
+a5 = 0
 
-a_count = answers.count("A")
-b_count = answers.count("B")
-c_count = answers.count("C")
+# A1 甘さ重視
+a1 += 1 if @perfume.question1 == "A"
+a1 += 1 if @perfume.question6 == "A"
+a1 += 1 if @perfume.question7 == "A"
+a1 += 1 if @perfume.question10 == "A"
 
-# 特定質問カウント
-aroma_score = 0
-sweets_score = 0
+# A2 バランス
+a2 += 1 if @perfume.question1 == "B"
+a2 += 1 if @perfume.question7 == "B"
+a2 += 1 if @perfume.question10 == "B"
 
-aroma_score += 1 if @perfume.question3 == "A"
-aroma_score += 1 if @perfume.question6 == "B"
-aroma_score += 1 if @perfume.question10 == "C"
+# A3 さっぱり
+a3 += 1 if @perfume.question1 == "C"
+a3 += 1 if @perfume.question6 == "C"
+a3 += 1 if @perfume.question7 == "C"
 
-sweets_score += 1 if @perfume.question5 == "B"
-sweets_score += 1 if @perfume.question9 == "A"
+# A4 香り重視
+a4 += 1 if @perfume.question3 == "A"
+a4 += 1 if @perfume.question6 == "B"
+a4 += 1 if @perfume.question10 == "C"
+
+# A5 スイーツ
+a5 += 1 if @perfume.question5 == "B"
+a5 += 1 if @perfume.question9 == "A"
+
+scores = {
+  "A1" => a1,
+  "A2" => a2,
+  "A3" => a3,
+  "A4" => a4,
+  "A5" => a5
+}
+
+result = scores.max_by{|k,v| v}[0]
 %>
 
 <div class="result">
 
-<% if aroma_score >= 2 %>
-
-<h3>A4 香り重視タイプ</h3>
-<%= image_tag "ichigo_aroma.png", class: "result-image" %>
-<p>香りの豊かなフルーティーないちごが好きなあなた。</p>
-
-<ul>
-<li>桃薫</li>
-<li>かおり野</li>
-<li>やよいひめ</li>
-</ul>
-
-<% elsif sweets_score >= 2 %>
-
-<h3>A5 スイーツタイプ</h3>
-<%= image_tag "ichigo_sweets.png", class: "result-image" %>
-<p>ケーキやデザートでいちごを楽しみたいあなた。</p>
-
-<ul>
-<li>とちおとめ</li>
-<li>さがほのか</li>
-<li>章姫</li>
-</ul>
-
-<% elsif a_count >= b_count && a_count >= c_count %>
+<% if result == "A1" %>
 
 <h3>A1 甘さ重視タイプ</h3>
-<%= image_tag "ichigo_sweet.png", class: "result-image" %>
-<p>甘くてジューシーないちごが好きなあなた。</p>
+<p>甘くてジューシーないちごが好き</p>
 
-<ul>
-<li>あまおう</li>
-<li>紅ほっぺ</li>
-<li>恋みのり</li>
-</ul>
-
-<% elsif b_count >= a_count && b_count >= c_count %>
+<% elsif result == "A2" %>
 
 <h3>A2 バランスタイプ</h3>
-<%= image_tag "ichigo_balance.png", class: "result-image" %>
-<p>甘さと酸味のバランスを楽しみたいあなた。</p>
+<p>甘さと酸味のバランスが好き</p>
 
-<ul>
-<li>とちおとめ</li>
-<li>ゆめのか</li>
-<li>章姫</li>
-</ul>
-
-<% else %>
+<% elsif result == "A3" %>
 
 <h3>A3 さっぱりタイプ</h3>
-<%= image_tag "ichigo_refresh.png", class: "result-image" %>
-<p>爽やかな味わいが好きなあなた。</p>
+<p>爽やかな酸味が好き</p>
 
-<ul>
-<li>おいCベリー</li>
-<li>さちのか</li>
-<li>もういっこ</li>
-</ul>
+<% elsif result == "A4" %>
+
+<h3>A4 香り重視タイプ</h3>
+<p>香り豊かないちごが好き</p>
+
+<% elsif result == "A5" %>
+
+<h3>A5 スイーツタイプ</h3>
+<p>デザート向きいちごが好き</p>
 
 <% end %>
 
 </div>
 
-<%= link_to "一覧に戻る", ichigos_path %>
+<%= link_to "一覧に戻る", perfumes_path %>
