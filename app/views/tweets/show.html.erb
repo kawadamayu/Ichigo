@@ -1,13 +1,42 @@
-<h1>GeekTwitter</h1>
-<h3>Tweet詳細</h3>
-<div class="tweet">
-  <p><%= @tweet.title %></p>
-  <p><%= @tweet.sweet%></p>
-  <p><%= @tweet.place %></p>
-  <p><%= @tweet.price%></p>
-  <p><%= @tweet.image%></p>
-  <p><%= @tweet.created_at %></p>
-</div>
+<div class="detail-page">
+  <div class="detail-card">
+    <h1>🍓 投稿詳細 🍓</h1>
+    <p class="detail-subtitle">いちごの情報をチェックしよう</p>
 
-<%= link_to "Tweet一覧に戻る", tweets_path %>
-<%= link_to "編集する", edit_tweet_path(@tweet.id) %>
+    <div class="detail-image">
+      <% if @tweet.image.present? %>
+        <%= image_tag @tweet.image, alt: @tweet.title %>
+      <% else %>
+        <%= image_tag "amaou.png", alt: "いちご画像" %>
+      <% end %>
+    </div>
+
+    <div class="detail-body">
+      <p><strong>いちごの名前：</strong><%= @tweet.title %></p>
+      <p class="sweet-stars">
+        <strong>甘さ：</strong>
+        <%= {
+          0 => "未選択",
+          "0" => "未選択",
+          1 => "★",
+          2 => "★★",
+          3 => "★★★",
+          "1" => "★",
+          "2" => "★★",
+          "3" => "★★★",
+          "★" => "★",
+          "★★" => "★★",
+          "★★★" => "★★★"
+        }[@tweet.sweet] || @tweet.sweet %>
+      </p>
+      <p><strong>場所：</strong><%= @tweet.place %></p>
+      <p><strong>値段：</strong><%= @tweet.price %></p>
+      <p><strong>投稿日：</strong><%= @tweet.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+    </div>
+
+    <div class="detail-actions">
+      <%= link_to "一覧に戻る", tweets_path, class: "sub-btn" %>
+      <%= link_to "編集する", edit_tweet_path(@tweet.id), class: "main-btn" %>
+    </div>
+  </div>
+</div>

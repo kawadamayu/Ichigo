@@ -1,61 +1,85 @@
-<%= form_for(@perfume) do |f| %>
 
-<div class="ichigo-container">
+<div class="diagnosis-page">
+  <div class="diagnosis-card">
+    <h1>🍓 いちご診断 🍓</h1>
+    <p class="diagnosis-subtitle">あなたにぴったりのいちごを見つけよう</p>
 
-<p>Q1. いちごに一番求めるのは？</p>
-<%= f.radio_button :question1,"A" %> とにかく甘い
-<%= f.radio_button :question1,"B" %> 甘さと酸味のバランス
-<%= f.radio_button :question1,"C" %> さっぱりした酸味
+    <%= form_for(@perfume) do |f| %>
 
-<p>Q2. 好きないちごの食感は？</p>
-<%= f.radio_button :question2,"A" %> やわらかくてジューシー
-<%= f.radio_button :question2,"B" %> しっかりした食感
-<%= f.radio_button :question2,"C" %> どちらでもよい
+      <div class="question-block">
+        <p class="question-title">Q1. いちごに一番求めるのは？</p>
+        <label class="option"><%= f.radio_button :question1, "A" %> とにかく甘い</label>
+        <label class="option"><%= f.radio_button :question1, "B" %> 甘さと酸味のバランス</label>
+        <label class="option"><%= f.radio_button :question1, "C" %> さっぱりした酸味</label>
+      </div>
 
-<p>Q3. いちごの香りはどれくらい重視する？</p>
-<%= f.radio_button :question3,"A" %> とても重視する
-<%= f.radio_button :question3,"B" %> 少し重視する
-<%= f.radio_button :question3,"C" %> あまり気にしない
+      <div class="question-block">
+        <p class="question-title">Q2. 好きないちごの食感は？</p>
+        <label class="option"><%= f.radio_button :question2, "A" %> やわらかくてジューシー</label>
+        <label class="option"><%= f.radio_button :question2, "B" %> しっかりした食感</label>
+        <label class="option"><%= f.radio_button :question2, "C" %> どちらでもよい</label>
+      </div>
 
-<p>Q4. いちごのサイズは？</p>
-<%= f.radio_button :question4,"A" %> 大きいほうが好き
-<%= f.radio_button :question4,"B" %> 小粒でもOK
-<%= f.radio_button :question4,"C" %> 気にしない
+      <div class="question-block">
+        <p class="question-title">Q3. いちごの香りはどれくらい重視する？</p>
+        <label class="option"><%= f.radio_button :question3, "A" %> とても重視する</label>
+        <label class="option"><%= f.radio_button :question3, "B" %> 少し重視する</label>
+        <label class="option"><%= f.radio_button :question3, "C" %> あまり気にしない</label>
+      </div>
 
-<p>Q5. いちごはどう食べることが多い？</p>
-<%= f.radio_button :question5,"A" %> そのまま食べる
-<%= f.radio_button :question5,"B" %> ケーキやスイーツ
-<%= f.radio_button :question5,"C" %> 練乳や砂糖をかける
+      <div class="question-block">
+        <p class="question-title">Q4. いちごのサイズは？</p>
+        <label class="option"><%= f.radio_button :question4, "A" %> 大きいほうが好き</label>
+        <label class="option"><%= f.radio_button :question4, "B" %> 小粒でもOK</label>
+        <label class="option"><%= f.radio_button :question4, "C" %> 気にしない</label>
+      </div>
 
-<p>Q6. いちごを選ぶとき重視するのは？</p>
-<%= f.radio_button :question6,"A" %> 甘さ
-<%= f.radio_button :question6,"B" %> 香り
-<%= f.radio_button :question6,"C" %> さっぱり感
+      <div class="question-block">
+        <p class="question-title">Q5. いちごはどう食べることが多い？</p>
+        <label class="option"><%= f.radio_button :question5, "A" %> そのまま食べる</label>
+        <label class="option"><%= f.radio_button :question5, "B" %> ケーキやスイーツ</label>
+        <label class="option"><%= f.radio_button :question5, "C" %> 練乳や砂糖をかける</label>
+      </div>
 
-<p>Q7. 好きなフルーツの傾向は？</p>
-<%= f.radio_button :question7,"A" %> マンゴー・バナナ
-<%= f.radio_button :question7,"B" %> りんご・もも
-<%= f.radio_button :question7,"C" %> キウイ・グレープフルーツ
+      <div class="question-block">
+        <p class="question-title">Q6. いちごを選ぶとき重視するのは？</p>
+        <label class="option"><%= f.radio_button :question6, "A" %> 甘さ</label>
+        <label class="option"><%= f.radio_button :question6, "B" %> 香り</label>
+        <label class="option"><%= f.radio_button :question6, "C" %> さっぱり感</label>
+      </div>
 
-<p>Q8. いちご狩りでは？</p>
-<%= f.radio_button :question8,"A" %> 甘そうな大きいもの
-<%= f.radio_button :question8,"B" %> 色が濃いもの
-<%= f.radio_button :question8,"C" %> いろいろ食べ比べる
+      <div class="question-block">
+        <p class="question-title">Q7. 好きなフルーツの傾向は？</p>
+        <label class="option"><%= f.radio_button :question7, "A" %> マンゴー・バナナ</label>
+        <label class="option"><%= f.radio_button :question7, "B" %> りんご・もも</label>
+        <label class="option"><%= f.radio_button :question7, "C" %> キウイ・グレープフルーツ</label>
+      </div>
 
-<p>Q9. スイーツの好みは？</p>
-<%= f.radio_button :question9,"A" %> 甘いスイーツ
-<%= f.radio_button :question9,"B" %> 甘さ控えめ
-<%= f.radio_button :question9,"C" %> さっぱり系
+      <div class="question-block">
+        <p class="question-title">Q8. いちご狩りでは？</p>
+        <label class="option"><%= f.radio_button :question8, "A" %> 甘そうな大きいもの</label>
+        <label class="option"><%= f.radio_button :question8, "B" %> 色が濃いもの</label>
+        <label class="option"><%= f.radio_button :question8, "C" %> いろいろ食べ比べる</label>
+      </div>
 
-<p>Q10. いちごの理想は？</p>
-<%= f.radio_button :question10,"A" %> 甘くてジューシー
-<%= f.radio_button :question10,"B" %> 甘酸っぱくて爽やか
-<%= f.radio_button :question10,"C" %> 香りが強くてフルーティ
+      <div class="question-block">
+        <p class="question-title">Q9. スイーツの好みは？</p>
+        <label class="option"><%= f.radio_button :question9, "A" %> 甘いスイーツ</label>
+        <label class="option"><%= f.radio_button :question9, "B" %> 甘さ控えめ</label>
+        <label class="option"><%= f.radio_button :question9, "C" %> さっぱり系</label>
+      </div>
 
-<br>
+      <div class="question-block">
+        <p class="question-title">Q10. いちごの理想は？</p>
+        <label class="option"><%= f.radio_button :question10, "A" %> 甘くてジューシー</label>
+        <label class="option"><%= f.radio_button :question10, "B" %> 甘酸っぱくて爽やか</label>
+        <label class="option"><%= f.radio_button :question10, "C" %> 香りが強くてフルーティ</label>
+      </div>
 
-<%= f.submit "診断する" %>
+      <div class="diagnosis-actions">
+        <%= f.submit "診断する", class: "diagnosis-btn" %>
+      </div>
 
+    <% end %>
+  </div>
 </div>
-
-<% end %>

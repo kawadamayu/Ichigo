@@ -1,5 +1,49 @@
-<%= form_for @tweet do |t| %>
-  <%= t.label :body %>
-  <%= t.text_field :body, :size => 140 %> 
-  <%= t.submit "編集する" %>
-<% end %>
+<div class="form-page">
+  <div class="form-card">
+    <h1>🍓 投稿を編集 🍓</h1>
+    <p class="form-subtitle">内容を修正しよう</p>
+
+    <% if @tweet.errors.any? %>
+      <div class="error-box">
+        <% @tweet.errors.full_messages.each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= form_for @tweet, html: { multipart: true } do |t| %>
+      <div class="form-group">
+        <%= t.label :title, "いちごの名前" %>
+        <%= t.text_field :title, class: "form-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= t.label :sweet, "甘さ" %>
+        <%= t.select :sweet, [["★", 1], ["★★", 2], ["★★★", 3]], { include_blank: "選択してください" }, class: "form-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= t.label :place, "購入場所・産地" %>
+        <%= t.text_field :place, class: "form-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= t.label :price, "値段" %>
+        <%= t.text_field :price, class: "form-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= t.label :image, "画像" %>
+        <%= t.file_field :image, class: "form-input" %>
+      </div>
+
+      <div class="form-actions">
+        <%= t.submit "更新する", class: "main-btn" %>
+      </div>
+    <% end %>
+
+    <div class="detail-actions">
+      <%= link_to "一覧に戻る", tweets_path, class: "sub-btn" %>
+    </div>
+  </div>
+</div>

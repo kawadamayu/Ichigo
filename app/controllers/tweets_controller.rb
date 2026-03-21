@@ -18,29 +18,32 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new
   end
 
-  def create
-    tweet = Tweet.new(tweet_params)
-    if tweet.save!
-      redirect_to :action => "index"
-    else
-      redirect_to :action => "new"
-    end
+ def create
+  @tweet = Tweet.new(tweet_params)
+  if @tweet.save
+    redirect_to tweets_path
+  else
+    render :new
   end
+end
 
   # 追記ここから
   def show
     @tweet = Tweet.find(params[:id])
   end
   # ここまで
-
-   def update
-    tweet = Tweet.find(params[:id])
-    if tweet.update(tweet_params)
-      redirect_to :action => "show", :id => tweet.id
-    else
-      redirect_to :action => "new"
-    end
+  def edit
+    @tweet = Tweet.find(params[:id])
   end
+
+  def update
+  @tweet = Tweet.find(params[:id])
+  if @tweet.update(tweet_params)
+    redirect_to tweet_path(@tweet)
+  else
+    render :edit
+  end
+end
 
    def destroy
     tweet = Tweet.find(params[:id])
@@ -50,20 +53,9 @@ class TweetsController < ApplicationController
 
   private
   def tweet_params
-    params.require(:tweet).permit(:title, :sweet, :place, :peice, :image)
+    params.require(:tweet).permit(:title, :sweet, :place, :price, :image)
   end
  #ここまでend
-end
 
-  def edit
-    @tweet = Tweet.find(params[:id])
-  end
   # ここまで
-
-  def tweet_params
-    params.require(:tweet).permit(:body)
-  end
-
-
-
-
+end

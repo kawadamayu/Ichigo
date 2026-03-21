@@ -1,27 +1,203 @@
-<h1>tweets</h1>
-<h3>新規投稿機能ページ</h3>
 
-<!--ここから-->
-<h3>投稿を検索</h3>
- <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
-   <%= text_field_tag :search %>
-   <%= submit_tag '検索する'  %>
-<% end %>
-<!--ここまで-->
 
-<%= link_to "新規投稿へ", new_tweet_path %>
-<div class="tweets-container">
-  <% @tweets.each do |t| %>
-    <div class="tweet">
-      <%= t.title %>
-      <%= t.sweet%>
-      <%= t.place %>
-      <%= t.price%>
-      <%= t.image%>
-     <%= link_to "詳細へ", tweet_path(t.id) %> 
-     <%= link_to "編集する", edit_tweet_path(t.id) %>
-      <%= button_to "削除する", tweet_path(t.id), method: :delete %> 
-    </div>   
-  <% end %>
+<div class="hero">
+  <h1>🍓 Ichigo 🍓</h1>
+  <p>あなたにぴったりのいちごを見つけよう</p>
+  <div class="hero-buttons">
+    <%= link_to "新規投稿へ", new_tweet_path, class: "main-btn" %>
+    <%= link_to "診断を始める", new_perfume_path, class: "sub-btn" %>
+  </div>
 </div>
- <%= link_to "診断を始める", new_perfume_path, class: "link" %>
+
+<section class="varieties-section fade-up">
+  <h2>🍓 人気のいちご品種 🍓</h2>
+
+  <div class="strawberry-grid">
+    <div class="strawberry-card">
+      <%= image_tag "amaou.png", class: "strawberry-img" %>
+      <h3>あまおう</h3>
+      <p>福岡県産。甘みと酸味のバランスが良く、大粒でジューシー。</p>
+    </div>
+
+    <div class="strawberry-card">
+      <%= image_tag "benihoppe.png", class: "strawberry-img" %>
+      <h3>紅ほっぺ</h3>
+      <p>果肉まで赤く、コクのある甘さが特徴。</p>
+    </div>
+
+    <div class="strawberry-card">
+      <%= image_tag "yayoihime.png", class: "strawberry-img" %>
+      <h3>やよいひめ</h3>
+      <p>まろやかな甘さとやさしい酸味で食べやすい。</p>
+    </div>
+
+    <div class="strawberry-card">
+      <%= image_tag "tochiotome.png", class: "strawberry-img" %>
+      <h3>とちおとめ</h3>
+      <p>甘味と酸味のバランスがよく、定番の人気品種。</p>
+    </div>
+
+    <div class="strawberry-card">
+      <%= image_tag "akihime.png", class: "strawberry-img" %>
+      <h3>あきひめ</h3>
+      <p>酸味がやさしく、やわらかい果肉でジューシー。</p>
+    </div>
+
+    <div class="strawberry-card">
+      <%= image_tag "yuubeni.png", class: "strawberry-img" %>
+      <h3>ゆうべに</h3>
+      <p>華やかな見た目と上品な甘さが魅力。</p>
+    </div>
+
+    <div class="strawberry-card">
+      <%= image_tag "skyberry.png", class: "strawberry-img" %>
+      <h3>スカイベリー</h3>
+      <p>大粒で見栄えがよく、甘味の強い贅沢な品種。</p>
+    </div>
+
+    <div class="strawberry-card">
+      <%= image_tag "hatsukoinokaori.png", class: "strawberry-img" %>
+      <h3>初恋の香り</h3>
+      <p>白いいちごとして知られ、やさしい香りが特徴。</p>
+    </div>
+  </div>
+</section>
+
+<section class="flowchart-section fade-up">
+  <h2>🍓 いちごフローチャート 🍓</h2>
+  <p class="section-text">気になるいちごの特徴を、ひと目でチェックしてみよう。</p>
+  <div class="flowchart-box">
+    <%= image_tag "flowchart.png", alt: "いちごフローチャート", class: "flowchart-png" %>
+  </div>
+</section>
+
+<section class="posts-section fade-up">
+  <h2>🍓 みんなのいちご投稿 🍓</h2>
+
+  <div class="tweets-container">
+    <% @tweets.each do |t| %>
+      <div class="tweet-card">
+        <div class="tweet-image">
+          <% if t.image.present? %>
+            <%= image_tag t.image, alt: t.title %>
+          <% else %>
+            <%= image_tag "amaou.png", alt: "いちご画像" %>
+          <% end %>
+        </div>
+
+        <div class="tweet-body">
+          <h3><%= t.title.presence || "いちごの投稿" %></h3>
+          <p class="sweet-stars">
+            <strong>甘さ：</strong>
+            <%= {
+              0 => "未選択",
+              "0" => "未選択",
+              1 => "★",
+              2 => "★★",
+              3 => "★★★",
+              "1" => "★",
+              "2" => "★★",
+              "3" => "★★★",
+              "★" => "★",
+              "★★" => "★★",
+              "★★★" => "★★★"
+            }[t.sweet] || t.sweet %>
+          </p>
+          <p><strong>場所：</strong><%= t.place %></p>
+          <p><strong>値段：</strong><%= t.price %></p>
+        </div>
+
+        <div class="tweet-actions">
+          <%= link_to "詳細", tweet_path(t.id), class: "detail-btn" %>
+          <%= link_to "編集", edit_tweet_path(t.id), class: "edit-btn" %>
+          <%= button_to "削除", tweet_path(t.id), method: :delete, class: "delete-btn" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<div class="section-divider">🍓 🍓 🍓</div>
+<section class="info-section">
+  <h2>🍓 いちごの食べごろ 🍓</h2>
+  <p class="section-text">おいしいいちごを選ぶためのポイントを見てみよう。</p>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>色</h3>
+      <p>ヘタの近くまで赤く色づいているものがおすすめです。</p>
+    </div>
+    <div class="info-card">
+      <h3>つや</h3>
+      <p>表面にハリとつやがあるいちごは、みずみずしく見た目もきれいです。</p>
+    </div>
+    <div class="info-card">
+      <h3>香り</h3>
+      <p>甘い香りがしっかりするものは、食べごろのサインです。</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider">🍓 🍓 🍓</div>
+<section class="info-section">
+  <h2>🍓 おいしい食べ方 🍓</h2>
+  <p class="section-text">品種ごとの個性を楽しみながら、いちごをもっと味わおう。</p>
+
+  <div class="tips-box">
+    <div class="tip-item">
+      <h3>そのまま味わう</h3>
+      <p>まずは何もつけずに、品種ごとの甘みや酸味を楽しんでみましょう。</p>
+    </div>
+    <div class="tip-item">
+      <h3>冷やしすぎない</h3>
+      <p>冷たすぎると甘みを感じにくいので、食べる少し前に冷蔵庫から出すのもおすすめです。</p>
+    </div>
+    <div class="tip-item">
+      <h3>ヘタ側から食べる</h3>
+      <p>先端に甘みが集まりやすいので、ヘタ側から食べると最後まで甘く感じやすいです。</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider">🍓 🍓 🍓</div>
+<section class="info-section">
+  <h2>🍓 保存方法 🍓</h2>
+  <p class="section-text">おいしさをできるだけ長く楽しむために、保存のコツも大切です。</p>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>洗わず保存</h3>
+      <p>水分がつくと傷みやすいので、食べる直前に洗うのがおすすめです。</p>
+    </div>
+    <div class="info-card">
+      <h3>やさしく並べる</h3>
+      <p>重ならないように保存するとつぶれにくく、きれいな状態を保ちやすいです。</p>
+    </div>
+    <div class="info-card">
+      <h3>早めに食べる</h3>
+      <p>いちごはとてもデリケートなので、できるだけ早めに味わうのがいちばんです。</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider">🍓 🍓 🍓</div>
+<section class="info-section fade-up">
+  <h2>🍓 いちごの豆知識 🍓</h2>
+  <p class="section-text">いちごをもっと好きになる、ちょっとした豆知識もチェック。</p>
+
+  <div class="tips-box">
+    <div class="tip-item">
+      <h3>品種はいろいろ</h3>
+      <p>いちごには、甘み重視・酸味重視・香り重視など、さまざまな個性があります。</p>
+    </div>
+    <div class="tip-item">
+      <h3>白いいちごもある</h3>
+      <p>初恋の香りのように、見た目が白っぽくやさしい色合いの品種もあります。</p>
+    </div>
+    <div class="tip-item">
+      <h3>贈り物にも人気</h3>
+      <p>大粒で見た目のきれいないちごは、ごほうびや贈り物としても人気があります。</p>
+    </div>
+  </div>
+</section>
+<button id="scrollTopBtn">↑</button>

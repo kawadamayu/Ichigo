@@ -2,22 +2,42 @@
 <html>
   <head>
     <title><%= content_for(:title) || "Ichigo" %></title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Kiwi+Maru&display=swap" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= yield :head %>
 
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="site-logo">
+          <%= link_to "🍓 Ichigo 🍓", tweets_path %>
+        </div>
+
+       <nav class="header-nav">
+  <%= link_to "ホーム", tweets_path, class: ("active" if current_page?(tweets_path)) %>
+  <%= link_to "投稿", new_tweet_path, class: ("active" if current_page?(new_tweet_path)) %>
+  <%= link_to "診断", new_perfume_path, class: ("active" if current_page?(new_perfume_path)) %>
+</nav> 
+      </div>
+    </header>
+
+    <main class="site-main">
+      <%= yield %>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Ichigo Site</p>
+    </footer>
   </body>
 </html>

@@ -1,34 +1,49 @@
-<h1>(tweets)</h1>
-<h3>新規投稿ページ</h3>
-<%= form_for @tweet do |t| %>
+<div class="form-page">
+  <div class="form-card">
+    <h1>🍓 新規投稿 🍓</h1>
+    <p class="form-subtitle">お気に入りのいちごを投稿しよう</p>
 
+    <% if @tweet.errors.any? %>
+      <div class="error-box">
+        <% @tweet.errors.full_messages.each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
 
-  <div class="field">
-    <%= t.label :品種 %>
-    <%= t.text_field :place, :size => 30 %>
+    <%= form_for @tweet, html: { multipart: true } do |f| %>
+      <div class="form-group">
+        <%= f.label :title, "いちごの名前" %>
+        <%= f.text_field :title, class: "form-input", placeholder: "例：あまおう" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :sweet, "甘さ" %>
+        <%= f.select :sweet, [["★", 1], ["★★", 2], ["★★★", 3]], { include_blank: "選択してください" }, class: "form-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :place, "購入場所・産地" %>
+        <%= f.text_field :place, class: "form-input", placeholder: "例：福岡県 / スーパー" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :price, "値段" %>
+        <%= f.text_field :price, class: "form-input", placeholder: "例：598円" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :image, "画像" %>
+        <%= f.file_field :image, class: "form-input" %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "投稿する", class: "main-btn" %>
+      </div>
+    <% end %>
+
+    <div class="detail-actions">
+      <%= link_to "一覧に戻る", tweets_path, class: "sub-btn" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= t.label :産地 %>
-    <%= t.text_field :place, :size => 30 %>
-  </div>
-
-  <div class="field">
-    <%= t.label :見た目 %>
-    <%= t.text_field :image, :size => 30 %>
-  </div>
-
-  <div class="field">
-    <%=t.label :糖度  %>
-    <%= t.number_field :sweet, :size => 10 %>
-  </div>
-
-  <div class="field">
-    <%= t.label :価格  %>
-    <%= t.number_field :price, :size => 10 %>
-  </div>
-
- <%= t.submit "投稿する" %>
-<% end %>
-
-<%= link_to "一覧に戻る", tweets_path %>
+</div>

@@ -47,35 +47,69 @@ scores = {
 result = scores.max_by { |_, v| v }&.first
 %>
 
-<div class="result">
+<div class="result-card">
 
 <% if result == "A1" %>
 
-<h3>A1 甘さ重視タイプ</h3>
-<p>甘くてジューシーないちごが好き</p>
+<h3>A1 いちごマスタータイプ</h3>
+
+<div class="result-images">
+  <%= image_tag "amaou.png" %>
+  <%= image_tag "skyberry.png" %>
+</div>
+
+<p>甘くてジューシーないちごが好きなあなた。</p>
+<p class="result-name">🍓 あまおう・スカイベリー</p>
 
 <% elsif result == "A2" %>
 
-<h3>A2 バランスタイプ</h3>
-<p>甘さと酸味のバランスが好き</p>
+<h3>A2 バランス美人タイプ</h3>
+
+<div class="result-images">
+  <%= image_tag "tochiotome.png" %>
+  <%= image_tag "yuubeni.png" %>
+</div>
+
+<p>甘さと酸味のバランスを楽しみたいあなた。</p>
+<p class="result-name">🍓 とちおとめ・ゆうべに</p>
 
 <% elsif result == "A3" %>
 
-<h3>A3 さっぱりタイプ</h3>
-<p>爽やかな酸味が好き</p>
+<h3>A3 さっぱり爽やかタイプ</h3>
+
+<div class="result-images">
+  <%= image_tag "akihime.png" %>
+  <%= image_tag "hatsukoinokaori.png" %>
+</div>
+
+<p>爽やかな味わいが好きなあなた。</p>
+<p class="result-name">🍓 あきひめ・初恋の香り</p>
 
 <% elsif result == "A4" %>
 
-<h3>A4 香り重視タイプ</h3>
-<p>香り豊かないちごが好き</p>
+<h3>A4 香りフェチタイプ</h3>
+
+<div class="result-images">
+  <%= image_tag "yayoihime.png" %>
+  <%= image_tag "hatsukoinokaori.png" %>
+</div>
+
+<p>香り豊かなフルーティーないちごが好きなあなた。</p>
+<p class="result-name">🍓 やよいひめ・初恋の香り</p>
 
 <% elsif result == "A5" %>
 
-<h3>A5 スイーツタイプ</h3>
-<p>デザート向きいちごが好き</p>
+<h3>A5 スイーツ大好きタイプ</h3>
+
+<div class="result-images">
+  <%= image_tag "benihoppe.png" %>
+  <%= image_tag "yuubeni.png" %>
+</div>
+
+<p>スイーツに合ういちごが好きなあなた。</p>
+<p class="result-name">🍓 紅ほっぺ・ゆうべに</p>
 
 <% end %>
 
 </div>
 
-<%= link_to "一覧に戻る", tweets_path %>
